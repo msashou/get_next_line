@@ -6,7 +6,7 @@
 /*   By: smasatak <smasatak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 03:53:23 by smasatak          #+#    #+#             */
-/*   Updated: 2026/08/26 04:30:00 by smasatak         ###   ########.fr       */
+/*   Updated: 2026/08/31 10:59:34 by smasatak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	ft_getc(int stream)
 {
-	static char	buf[BUFSIZ];
+	static char	buf[BUFFER_SIZE];
 	static char	*bufp;
 	static int	n = 0;
 
 	if (n == 0)
 	{
-		n = read(stream, buf, sizeof buf);
+		n = read(stream, buf, BUFFER_SIZE);
 		bufp = buf;
 	}
 	if (--n >= 0)
@@ -29,19 +29,26 @@ int	ft_getc(int stream)
 		return (EOF);
 }
 
-int	main(void)
+int	ft_putc(t_string *str, unsigned char c)
 {
-	int	fd;
-	int	c;
+	unsigned char	*new_str;
+	int	new_capa;
+	int	i;
 
-	fd = open("./test.txt", O_RDONLY);
-	while (1)
+	new_capa = str->capa + 1;
+	new_str = malloc(sizeof(char) * new_capa);
+	if (!new_str)
+		return (-1);
+	i = 0;
+	while (i < str->len)
 	{
-		c = ft_getc(fd);
-		if (c == EOF)
-			break;
-		printf("%c\n", c);
+		new_str[i] = str->str[i];
+		i++;
 	}
-	close(fd);
+	free(str->str);
+	str->str = new_str;
+	str->capa = new_capa;
+	str->str[str->len] = c;
+	str->len++;
 	return (0);
 }
