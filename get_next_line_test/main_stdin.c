@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   main_stdin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smasatak <smasatak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 03:52:01 by smasatak          #+#    #+#             */
-/*   Updated: 2026/09/01 20:25:03 by smasatak         ###   ########.fr       */
+/*   Created: 2020/06/30 06:38:23 by user42            #+#    #+#             */
+/*   Updated: 2020/07/03 02:19:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
+int	main(void)
 {
-	t_string	ret;
-	int		c;
+	int		i;
+	int		fd;
+	char	*get_line;
 
-	ret.str = NULL;
-	ret.len = 0;
-	ret.capa = 0;
-
-	while (1)
+	i = 0;
+	fd = 0;
+	while (i++ < 5)
 	{
-		c = ft_getc(fd);
-
-		if (c == EOF)
-			break;
-		ft_putc(&ret, c);
-		if (c == '\n')
-			break;
+		printf("%d\n", get_next_line(fd, &get_line));
+		printf("%s\n", get_line);
+		free(get_line);
 	}
-	if (ret.len > 0)
-		ft_putc(&ret, '\0');
-	return ((char *)ret.str);
+	return (0);
 }
