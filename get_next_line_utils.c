@@ -6,7 +6,7 @@
 /*   By: smasatak <smasatak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 03:53:23 by smasatak          #+#    #+#             */
-/*   Updated: 2026/08/31 10:59:34 by smasatak         ###   ########.fr       */
+/*   Updated: 2026/09/01 06:04:26 by smasatak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	ft_getc(int stream)
 int	ft_putc(t_string *str, unsigned char c)
 {
 	unsigned char	*new_str;
-	int	new_capa;
-	int	i;
+	int				new_capa;
+	int				i;
 
 	new_capa = str->capa + 1;
 	new_str = malloc(sizeof(char) * new_capa);

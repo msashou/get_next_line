@@ -6,6 +6,8 @@
 // 	char	*line;
 
 // 	fd = open("./test.txt", O_RDONLY);
+// 	if (fd == -1)
+// 		return (0);
 // 	while ((line = get_next_line(fd)) != NULL)
 // 	{
 // 		printf("%s", line);
@@ -14,21 +16,20 @@
 // 	close(fd);
 // 	return (0);
 // }
-int	main(int argc, char **argv)
-{
-	int		fd;
-	char	*line;
 
-	if (argc > 1)
-		fd = open(argv[1], O_RDONLY);
-	else
-		fd = 0;
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s", line);
-		free(line);
-	}
-	if (fd != 0)
-		close(fd);
-	return (0);
+void	def_i(void)
+{
+	static int	i;
+
+	i++;
+	printf("%d\n", i);
+	return ;
+}
+
+int	main()
+{
+	def_i();
+	def_i();
+
+	return 0;
 }
