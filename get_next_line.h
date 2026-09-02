@@ -6,7 +6,7 @@
 /*   By: smasatak <smasatak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 03:54:35 by smasatak          #+#    #+#             */
-/*   Updated: 2026/09/01 17:27:27 by smasatak         ###   ########.fr       */
+/*   Updated: 2026/09/02 13:06:24 by smasatak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ typedef struct s_string
 #endif
 
 char	*get_next_line(int fd);
-int	ft_getstr(int stream);
-int	ft_putstr(t_string *str, unsigned char c);
+int	ft_getc(int stream);
+int	ft_putc(t_string *str, unsigned char c);

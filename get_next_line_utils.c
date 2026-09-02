@@ -6,7 +6,7 @@
 /*   By: smasatak <smasatak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 03:53:23 by smasatak          #+#    #+#             */
-/*   Updated: 2026/09/01 20:38:03 by smasatak         ###   ########.fr       */
+/*   Updated: 2026/09/02 13:34:53 by smasatak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,49 @@ int	ft_getc(int stream)
 	}
 	if (n == -1)
 		return (EOF);
-	while (n-- > 0)
-		fprintf(stdout, "%c", *bufp++);
-	return (0);
+	n--;
+	return ((unsigned char)*bufp++);
 }
 
-int	main()
+int	ft_putc(t_string *str, unsigned char c)
 {
-	int	n;
-	int	i;
+	unsigned char	*new_str;
+	int		new_capa;
+	size_t		i;
 
-	n = 0;
+	new_capa = str->capa + 1;
+	new_str = malloc(sizeof(char) * new_capa);
+	if (!new_str)
+		return (-1);
 	i = 0;
-	n = open("./file1.txt", O_RDONLY);
-
-	if (n == -1)
-		printf("ERROR\n");
-	i = ft_getc(n);
-	if (i == -1)
-		printf("ERROR getstr\n");
-
+	while (i < str->len)
+	{
+		new_str[i] = str->str[i];
+		i++;
+	}
+	free(str->str);
+	str->str = new_str;
+	str->capa = new_capa;
+	str->str[str->len] = c;
+	str->len++;
 	return (0);
 }
 
-// int	ft_putc(t_string *str, unsigned char c)
+// int	main()
 // {
-// 	unsigned char	*new_str;
-// 	int		new_capa;
-// 	size_t		i;
+// 	int	n;
+// 	int	i;
 
-// 	new_capa = str->capa + 1;
-// 	new_str = malloc(sizeof(char) * new_capa);
-// 	if (!new_str)
-// 		return (-1);
+// 	n = 0;
 // 	i = 0;
-// 	while (i < str->len)
-// 	{
-// 		new_str[i] = str->str[i];
-// 		i++;
-// 	}
-// 	free(str->str);
-// 	str->str = new_str;
-// 	str->capa = new_capa;
-// 	str->str[str->len] = c;
-// 	str->len++;
+// 	n = open("./file1.txt", O_RDONLY);
+
+// 	if (n == -1)
+// 		printf("ERROR\n");
+// 	i = ft_getc(n);
+// 	if (i == -1)
+// 		printf("ERROR getstr\n");
+
 // 	return (0);
 // }
 
